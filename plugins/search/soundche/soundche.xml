@@ -1,0 +1,27 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="soundche">
+
+
+    <name>soundche search</name>
+    <creationDate>19/05/14</creationDate>
+    <author>GeekHub</author>
+    <authorEmail>Your e-mail address</authorEmail>
+    <authorUrl>GeekHub.ck.ua</authorUrl>
+    <copyright>Copyright information</copyright>
+    <license>License, for example GNU/GPL</license>
+    <version>Version of the plugin</version>
+    <description>Description of the plugin; shown during installation and when editing
+        the plugin in the Plugin Manager</description>
+
+	<files>
+		<filename plugin="soundche">soundche.php</filename>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="search_limit" type="text" default="50" description="PLG_SEARCH_SOUNDCHE_FIELD_SEARCHLIMIT_DESC" label="PLG_SEARCH_SOUNDCHE_FIELD_SEARCHLIMIT_LABEL" size="5" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

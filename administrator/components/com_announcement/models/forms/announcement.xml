@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+              <field name="id" type="text" default="0" label="COM_ANNOUNCEMENT_FORM_LBL_ANNOUNCEMENT_ID"
+            readonly="true" class="readonly"
+            description="JGLOBAL_FIELD_ID_DESC" /> 
+
+       <field name="created_by" type="createdby" default="" 
+            label="COM_ANNOUNCEMENT_FORM_LBL_ANNOUNCEMENT_CREATED_BY"
+            description="COM_ANNOUNCEMENT_FORM_DESC_ANNOUNCEMENT_CREATED_BY"  /> 
+
+       <field name="title" type="text"
+                
+            label="COM_ANNOUNCEMENT_FORM_LBL_ANNOUNCEMENT_TITLE"
+            description="COM_ANNOUNCEMENT_FORM_DESC_ANNOUNCEMENT_TITLE" 
+                
+                
+                 required="true" 
+            filter="string"
+            maxlength="100" /> 
+
+       <field name="date" type="calendar"
+                
+            label="COM_ANNOUNCEMENT_FORM_LBL_ANNOUNCEMENT_DATE"
+            description="COM_ANNOUNCEMENT_FORM_DESC_ANNOUNCEMENT_DATE" 
+                 format="%Y-%m-%d %H:%M:%S"
+                
+                 required="true" 
+            filter="safehtml" />
+
+       <field name="image" type="media"
+                
+            label="COM_ANNOUNCEMENT_FORM_LBL_ANNOUNCEMENT_IMAGE"
+            description="COM_ANNOUNCEMENT_FORM_DESC_ANNOUNCEMENT_IMAGE" 
+                
+                
+                
+            directory="images/" /> 
+
+       <field name="description" type="editor"
+                
+            label="COM_ANNOUNCEMENT_FORM_LBL_ANNOUNCEMENT_DESCRIPTION"
+            description="COM_ANNOUNCEMENT_FORM_DESC_ANNOUNCEMENT_DESCRIPTION" 
+                
+                
+                 required="true" 
+            height="100" /> 
+
+         <field
+        name="state"
+        type="list"
+        label="JSTATUS"
+        description="JFIELD_PUBLISHED_DESC"
+        class="inputbox"
+        size="1"
+        default="1">
+        <option value="1">JPUBLISHED</option>
+        <option value="0">JUNPUBLISHED</option>
+    </field> 
+
+                        <field name="checked_out" type="hidden" filter="unset" />
+        <field name="checked_out_time" type="hidden" filter="unset" /> 
+
+ </fieldset> 
+
+ <fieldset 
+                        name="accesscontrol">
+                       <field name="asset_id" type="hidden" filter="unset" />
+                       <field name="rules"
+                            type="rules"
+                            label="JFIELD_RULES_LABEL"
+                            translate_label="false"
+                            filter="rules"
+                            validate="rules"
+                            class="inputbox"
+                            component="com_announcement"
+                            section="announcement"
+                        />
+
+	</fieldset>
+
+</form>

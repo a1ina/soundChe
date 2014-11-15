@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset>
+
+<field name="track" type="text" label="VK_GROUP" description="VK_GROUP_DESC"  filter="INT"/>
+    </fieldset>
+
+</form>

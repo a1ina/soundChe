@@ -1,0 +1,1 @@
+var playerGroup = new easyPlayerManager();

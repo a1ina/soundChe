@@ -1,0 +1,81 @@
+
+
+/**************************************************/
+/******************  pagination   *****************/
+/**************************************************/
+
+.pagination {
+    padding: 20px;
+    clear: both;
+}
+
+.pagination ul {
+    text-align: center;
+}
+
+.pagination li {
+    display: inline-block;
+}
+.pagination li span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    text-decoration: none;
+    color: #ff0000;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+}
+.pagination li a
+ {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    text-decoration: none;
+    color: #428bca;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    margin-left: -1px;
+}
+
+.pagination li:first-child a,
+.pagination li:first-child span {
+    margin-left: 0;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.pagination li:last-child a,
+.pagination li:last-child span {
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.pagination li a:hover,
+.pagination li a:focus,
+ {
+    color: #2a6496;
+    background-color: #eeeeee;
+    border-color: #dddddd;
+}
+/**************************************************/
+/******************  highslide   *****************/
+/**************************************************/
+
+.highslide span{
+    font-size: 12px !important;
+}
+.highslide img {
+    float: right;
+    margin-right: 20px;
+
+ }
+
+
+/********************************/
+/*******      share icon  *******/
+/********************************/
+.phocagallery table {
+    display: block;
+}

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form class="form-validate">
+    <fieldset>
+        <field
+                name="id"
+                type="hidden"
+                />
+        <field name="created_by" type="createdby" default=""
+               label="COM_SOUNDCHE_CIRCLE_FORM_LBL_CIRCLESOUNDCHE_CREATED_BY"
+               description="COM_SOUNDCHE_CIRCLE_FORM_DESC_CIRCLESOUNDCHE_CREATED_BY"/>
+
+
+        <field
+                name="published"
+                type="list"
+                label="JSTATUS"
+                description="JFIELD_PUBLISHED_DESC"
+                class="inputbox"
+                size="1"
+                default="1">
+            <option value="1">JPUBLISHED</option>
+            <option value="0">JUNPUBLISHED</option>
+        </field>
+
+        <field
+                name="title"
+                type="text"
+                required="true"
+                label="COM_SOUNDCHE_CIRCLE_TITLE_LABEL"
+                description="COM_SOUNDCHE_CIRCLE_TITLE_DESC"
+                size="40"
+                class="required"
+                default=""
+                />
+
+        <field name="img_category"
+               type="phocagallerycategory"
+               label="COM_SOUNDCHE_CIRCLE_FORM_SELECT_CAT_IMG"
+               description="COM_SOUNDCHE_CIRCLE_FORM_SELECT_CAT_IMG_DESC"/>
+        <field name="video_category"
+               type="phocagallerycategory"
+               label="COM_SOUNDCHE_CIRCLE_FORM_SELECT_CAT_VIDEO"
+               description="COM_SOUNDCHE_CIRCLE_FORM_SELECT_CAT_VIDEO_DESC"/>
+
+        <field
+                name="description"
+                type="textarea"
+                label="COM_SOUNDCHE_CIRCLE_INFO_LABEL"
+                description="COM_SOUNDCHE_CIRCLE_INFO_DESC"
+                rows="10" cols="5"
+                class="required"
+                required="true"
+                default=""
+                />
+        <field
+                name="image"
+                type="media"
+                label="COM_SOUNDCHE_CIRCLE_GUESTS_LOGO_LABEL"
+                description="COM_SOUNDCHE_CIRCLE_GUESTS_IMG_DESC"
+                size="40"
+                class="required"
+                required="true"
+                default="images/icon/No-Image-Available.gif"
+                />
+
+        <field
+                name="created"
+                type="calendar"
+                label="Дата"
+                format="%Y-%m-%d"
+                required="true"
+                description="Дата створення"/>
+
+    </fieldset>
+</form>

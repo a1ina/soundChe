@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	version="2.5"
+	client="site"
+	method="upgrade">
+	<name>ajaxsearch</name> 
+	<author>Jan Sangill</author> 
+	<creationDate>2012-03-11</creationDate> 
+	<copyright>All rights reserved by Jan Sangill 2012.</copyright> 
+	<license>GPL 2.0</license> 
+	<authorEmail>jansangill@hotmail.com</authorEmail> 
+	<authorUrl>http://www.jansangill.dk</authorUrl> 
+	<version>1.0.0</version> 
+	<description>Provides a live search function</description>
+	<scriptfile>ajaxsearch.scriptfile.php</scriptfile> 
+	<files>
+		<filename module="mod_ajaxsearch">mod_ajaxsearch.php</filename>
+		<filename>index.html</filename>
+		<filename>helper.php</filename>
+		<filename>ajaxsearch.php</filename>
+		<filename>tmpl/default.php</filename>
+		<filename>tmpl/index.html</filename>
+		<folder>css</folder>
+		<folder>img</folder>
+	</files>
+ 	
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="text"
+					type="text"
+					label="Search box text"
+					default="Search the homepage..."
+					description="text displayed inside the search box" />
+				<field
+					name="text_bottom"
+					type="text"
+					default="Nothing found? Go to the searchpage."
+					label="Bottom text"
+					description="text displayed at the bottom" />
+				<field
+					name="no_results"
+					type="text"
+					default="No results found. Try another query."
+					label="No results text"
+					description="text displayed when no results found" />
+				
+				<field
+					name="category"
+					type="list"
+					default="1"
+					label="Category"
+					description="Select whether the category headlines should be present">
+					<option
+						value="1">Yes</option>
+					<option
+						value="0">No</option>
+					</field>
+					
+					<field name="searchphrase" type="list" default="any" label="Searchphrase">
+						<option value="any">Any words</option>
+						<option value="all">All words</option>
+						<option value="exact">Exact phrase</option>
+					</field>
+					<field name="ordering" type="list" default="newest" label="Search order">
+						<option value="alpha">Alphabetical</option>
+						<option value="category">Section/Category</option>
+						<option value="newest">Newest first</option>
+						<option value="oldest">Oldest first</option>
+						<option value="popular">Most popular</option>
+					</field>
+					<field name="limit" type="list" default="5" label="Limit Search To How Many Results?">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="20">20</option>
+						<option value="25">25</option>
+						<option value="30">30</option>
+						<option value="50">50</option>
+					</field>
+					
+					<field
+						name="width_suggestions"
+						type="text"
+						default="280"
+						label="Width of the suggestion dropwdown"
+						description="Width of the suggestion dropdown" />
+					
+					<field
+						name="width_input"
+						type="text"
+						default="160"
+						label="Width of the search field"
+						description="Width of the search field" />	
+					
+					<field
+						name="delay_timer"
+						type="text"
+						default="500"
+						label="Delay of ajax search"
+						description="Delay of ajax search in miliseconds. Used to prevent mass spam." />					
+					
+					<field
+						name="title_maxlenght"
+						type="text"
+						default="35"
+						label="Maximun chars allowed for title"
+						description="Maximun chars allowed for title" />
+						
+					<field
+						name="description_maxlenght"
+						type="text"
+						default="80"
+						label="Maximun chars allowed for description"
+						description="Maximun chars allowed for description" />		
+					
+					<field
+						name="search_itemid"
+						type="text"
+						default=""
+						label="Searchpage Itemid"
+						description="The Menu itemid of the search page." />
+									
+				
+			</fieldset>
+
+			<fieldset
+				name="advanced">
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+				<field
+					name="cache"
+					type="list"
+					default="0"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC">
+					<option
+						value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+
+</extension>

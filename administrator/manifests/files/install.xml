@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.7" type="file" method="upgrade">
+	<name>Gantrified</name>
+	<version>2.0b</version>
+	<creationDate>22/09/2012</creationDate>
+	<author>ABTOP</author>
+	<authorEmail>eveventhrider@yahoo.com</authorEmail>
+	<authorUrl>http://www.joomlatune.com</authorUrl>
+	<copyright>(C) 2012 ABTOP. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<description>Gantrified template for JComments 2.3.0 and Gantry 4</description>
+	<fileset>
+		<files folder="admin" target="administrator/language/en-GB">
+			<filename>en-GB.com_gantry_gantrified.ini</filename>
+		</files>
+		<files folder="admin" target="administrator/language/ru-RU">
+			<filename>ru-RU.com_gantry_gantrified.ini</filename>
+		</files>
+		
+		<files folder="site" target="components/com_jcomments/tpl/gantrified">
+			<filename>index.html</filename>
+			<filename>style.css</filename>
+			<filename>style_rtl.css</filename>
+			<filename>tpl_comment.php</filename>
+			<filename>tpl_email.php</filename>
+			<filename>tpl_email_administrator.php</filename>
+			<filename>tpl_email_report.php</filename>
+			<filename>tpl_form.php</filename>
+			<filename>tpl_index.php</filename>
+			<filename>tpl_links.php</filename>
+			<filename>tpl_list.php</filename>
+			<filename>tpl_report_form.php</filename>
+			<filename>tpl_tree.php</filename>
+		</files>
+		<files folder="site" target="components/com_jcomments/tpl/gantrified/images">
+			<filename>index.html</filename>
+			<filename>jc_bbcodes.gif</filename>
+			<filename>jc_blog.gif</filename>
+			<filename>jc_blog_rtl.gif</filename>
+			<filename>jc_busy.gif</filename>
+			<filename>jc_date.gif</filename>
+			<filename>jc_dot.gif</filename>
+			<filename>jc_error.gif</filename>
+			<filename>jc_info.gif</filename>
+			<filename>jc_link.gif</filename>
+			<filename>jc_rss.gif</filename>
+			<filename>jc_rss_rtl.gif</filename>
+			<filename>jc_vote.png</filename>
+		</files>
+		<files folder="site" target="libraries/gantry/features">
+			<filename>gantrified.php</filename>
+		</files>
+	</fileset>
+</extension>

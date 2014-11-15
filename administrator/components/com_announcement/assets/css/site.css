@@ -1,0 +1,8 @@
+#main .item_fields ul {
+    list-style: none !important;
+}
+
+#main .item_fields ul li h3 {
+    font-size: 20px;
+
+}

@@ -1,0 +1,107 @@
+.carousel {
+
+    height: 230px;
+    width: 840px; /* øèðèíà âñåãî áëîêà */
+    margin: 0px auto;
+}
+
+.carousel-wrapper {
+
+    width: 725px; /* øèðèíà îáëàñòè êàðóñåëè */
+    height: 240px;
+    overflow: hidden; /* ñêðûâàåì ñîäåðæèìîå, âûõîäÿùåå çà ðàìêè îñíîâíîé îáëàñòè */
+    margin: 5px 25px;
+    padding: 0px;
+    position: inherit;
+    float: left;
+
+}
+
+.carousel-items {
+    width: 10000px; /* óñòàíàâëèâàåì áîëüøóþ øèðèíó äëÿ íàáîðà ýëåìåíòîâ */
+    position: relative; /* ïîçèöèîíèðóåì áëîê îòíîñèòåëüíî îñíîâíîé îáëàñòè êàðóñåëè */
+}
+
+.carousel-block {
+    float: left; /* âûñòðàèâàåì âñå ýëåìåíòû êàðóñåëè â ðÿä */
+    width: 250px; /* çàäà¸ì øèðèíó êàæäîãî ýëåìåíòà */
+    padding: 10px 10px; /* äåëàåì îñòóïû, ÷òîáû ýëåìåíòû íå ñëèâàëèñü */
+}
+
+/*********** BUTTONS ***********/
+#accordion .carousel-button-left a, #accordion .carousel-button-right a {
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0;
+    position: relative;
+    top: 100px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.carousel-button-right {
+    float: right;
+    height: 230px;
+}
+.carousel-button-left {
+    float: left;
+    height: 230px;
+}
+
+
+.carousel-button-left a {
+    float: left;
+    background: url(../images/carousel-left.png) no-repeat;
+
+}
+
+.carousel-button-right a {
+    float: left;
+    background: url(../images/carousel-right.png) no-repeat;
+
+}
+
+/*********** SHADOW ***********/
+.shadow-block {
+    float: left;
+}
+
+.shadow-block .t {
+    padding: 0px;
+    background: url(../images/shadow/tc.jpg) repeat-x top;
+}
+
+.shadow-block .b {
+    padding: 0px;
+    background: url(../images/shadow/bc.jpg) repeat-x bottom;
+}
+
+.shadow-block .t .t {
+    padding: 0px;
+    background: url(../images/shadow/tl.jpg) no-repeat top left;
+}
+
+.shadow-block .t .t .t {
+    padding: 4px 0px 0px 0px;
+    background: url(../images/shadow/tr.jpg) no-repeat top right;
+}
+
+.shadow-block .b .b {
+    padding: 0px;
+    background: url(../images/shadow/bl.jpg) no-repeat bottom left;
+}
+
+.shadow-block .b .b .b {
+    padding: 0px 10px 12px 10px;
+    background: url(../images/shadow/br.jpg) no-repeat bottom right;
+}
+
+.shadow-block .m {
+    padding: 0px;
+    background: url(../images/shadow/l.jpg) repeat-y left;
+}
+
+.shadow-block .m .m {
+    padding: 0px;
+    background: url(../images/shadow/r.jpg) repeat-y right;
+}

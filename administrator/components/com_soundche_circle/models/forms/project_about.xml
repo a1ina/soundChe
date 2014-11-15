@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form class="form-validate">
+    <fieldset>
+        <field
+                name="id"
+                type="hidden"
+                />
+        <field name="created_by" type="createdby" default=""
+               label="COM_SOUNDCHE_CIRCLE_FORM_LBL_CIRCLESOUNDCHE_CREATED_BY"
+               description="COM_SOUNDCHE_CIRCLE_FORM_DESC_CIRCLESOUNDCHE_CREATED_BY"/>
+
+
+        <field
+                name="published"
+                type="list"
+                label="JSTATUS"
+                description="JFIELD_PUBLISHED_DESC"
+                class="inputbox"
+                size="1"
+                default="1">
+            <option value="1">JPUBLISHED</option>
+            <option value="0">JUNPUBLISHED</option>
+        </field>
+
+        <field
+                name="title"
+                type="text"
+                label="COM_SOUNDCHE_CIRCLE_NAME_LABEL"
+                description="COM_SOUNDCHE_CIRCLE_NAME_DESC"
+                size="40"
+                class="required"
+                default=""
+                />
+        <field
+                name="description"
+                type="editor"
+                label="COM_SOUNDCHE_CIRCLE_INFO_LABEL"
+                description="COM_SOUNDCHE_CIRCLE_INFO_DESC"
+                class="required "
+                filter="JComponentHelper::filterText"
+                default=""
+                />
+
+        <field
+                name="image"
+                type="media"
+                label="COM_SOUNDCHE_CIRCLE_IMAGE_LABEL"
+                description="COM_SOUNDCHE_CIRCLE_INFO_DESC"
+                size="40"
+                class="required"
+                default="images/icon/No-Image-Available.gif"
+
+                />
+
+    </fieldset>
+</form>

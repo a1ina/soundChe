@@ -1,0 +1,13 @@
+.front-end-edit li {
+border: none !important;
+    list-style: none !important;
+    margin: 0 !important;
+min-height: 0 !important;
+}
+
+#rules li{
+border: none !important;
+    list-style: none !important;
+    margin: 0 !important;
+min-height: 0 !important;
+}

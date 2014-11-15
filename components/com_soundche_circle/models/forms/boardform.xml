@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset>
+
+        <field
+                name="id"
+                type="hidden"
+                />
+        <field name="created_by" type="createdby" default=""
+               label="COM_SOUNDCHE_CIRCLE_FORM_LBL_CIRCLESOUNDCHE_CREATED_BY"
+               description="COM_SOUNDCHE_CIRCLE_FORM_DESC_CIRCLESOUNDCHE_CREATED_BY"/>
+
+        <field
+                name="name"
+                type="text"
+                label="COM_SOUNDCHE_CIRCLE_NAME_LABEL"
+                description="COM_SOUNDCHE_CIRCLE_NAME_DESC"
+                size="40"
+                class="required"
+                default=""
+                />
+        <field
+                name="contacts"
+                type="text"
+                label="COM_SOUNDCHE_CIRCLE_CONTACTS_LABEL"
+                description="COM_SOUNDCHE_CIRCLE_CONTACTS_DESC"
+                size="40"
+                class="required"
+                default=""
+                />
+        <field
+                name="info"
+                type="textarea"
+                label="COM_SOUNDCHE_CIRCLE_INFO_LABEL"
+                description="COM_SOUNDCHE_CIRCLE_INFO_DESC"
+                cols="40"
+                rows="8"
+                class="required"
+                default=""
+                />
+        <field
+                name="photo"
+                type="media"
+                label="COM_SOUNDCHE_CIRCLE_PHOTO_LABEL"
+                description="COM_SOUNDCHE_CIRCLE_PHOTO_DESC"
+                size="40"
+                class="required"
+                default="images/icon/No-Image-Available.gif"
+                />
+
+        <field name="checked_out" type="hidden" filter="unset"/>
+        <field name="checked_out_time" type="hidden" filter="unset"/>
+
+    </fieldset>
+
+
+</form>
