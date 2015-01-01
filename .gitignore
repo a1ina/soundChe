@@ -1,6 +1,6 @@
 .idea
-images/*
+/images/*
 .git
 configuration.php
-tmp
-cache
+/tmp
+/cache
