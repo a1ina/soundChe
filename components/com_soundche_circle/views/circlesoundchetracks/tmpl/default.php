@@ -4,9 +4,14 @@
 defined('_JEXEC') or die;
 
 $document = JFactory::getDocument();
-$document->addScript('/components/com_soundche_circle/assets/js/base.js');
-$document->addScript('/components/com_soundche_circle/assets/js/easyPlayer.js');
 $document->addScript('//code.jquery.com/jquery-1.10.2.js');
+$document->addScript('//code.jquery.com/ui/1.10.4/jquery-ui.js');
+
+//$document->addScript('/components/com_soundche_circle/assets/js/base.js');
+$document->addScript('/components/com_soundche_circle/assets/js/player.js');
+$document->addStyleSheet('/components/com_soundche_circle/assets/css/player.css');
+//$document->addScript('/components/com_soundche_circle/assets/js/easyPlayer.js');
+
 $app = JFactory::getApplication();
 $menu = $app->getMenu()->getActive();
 
@@ -27,15 +32,15 @@ $canEdit = JFactory::getUser()->authorise('core.edit', 'com_soundche_circle.' . 
 if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_soundche_circle' . $this->item->id)) {
     $canEdit = JFactory::getUser()->id == $this->item->created_by;
 }
-if ($this->item) : ?>
-
+if ($this->item) :?>
 
     <form class="searchbar"
           action="      <?php echo JURI::base() . 'index.php?option=com_soundche_circle&view=circlesoundchetracks&Itemid=166'; ?>"
           method="post">
         <h3>Пошук</h3>
         <span>Ім'я</span>
-        <input type="text" name="artist" class="name_search" size="28" value="<?php echo $_POST['artist']?>">
+        <input type="text" name="artist" class="name_search" size="28"
+               value="<?php echo isset($_POST['artist']) ? $_POST['artist'] : '' ?>"/>
         <?php
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
@@ -47,8 +52,11 @@ if ($this->item) : ?>
         <select name="genre" onchange="">
             <option value="">Виберіть жанр</option>
             <?php
+
+            $genrePost = isset($_POST['genre']) ? $_POST['genre'] : '';
             foreach ($genres as $genre):?>
-                <option <?php if ($_POST['genre'] == $genre->genre_id) echo 'selected="selected"' ?> value="<?php echo $genre->genre_id ?>"><?php echo $genre->title ?></option>
+                <option <?php if ($genrePost == $genre->genre_id) echo 'selected="selected"' ?>
+                    value="<?php echo $genre->genre_id ?>"><?php echo $genre->title ?></option>
             <?php endforeach; ?>
         </select>
 
@@ -57,134 +65,55 @@ if ($this->item) : ?>
     </form>
 
     <div class="content">
-
         <ul class="border">
             <li>
-
-
-                <script type="text/javascript">
-                    var playerGroup = new easyPlayerManager();
-                </script>
-
-
                 <?php
+                foreach ($this->item as $track) : ?>
+                    <div class="audio-container item">
+                        <div class="title">
+                           <span>
+                               <span class="artist">
+                                   <?php echo $track->artist; ?>
+                               </span>
+                               &nbsp;-&nbsp;
+                               <span class="name">
+                                   <?php echo $track->title; ?>
+                               </span>
+                           </span>
+                        </div>
 
-                require_once 'vkapi.class.php';
+                        <audio preload="none" src="<?php echo $track->url; ?>">
+                            <p>Your player does not supported audio</p>
+                        </audio>
 
-                $api_id = '4069648'; // Insert here id of your application
-                $vk_id = '40704529'; // Insert here you vk id
-
-                $VK = new vkapi($api_id, $vk_id);
-
-                $resp = $VK->api('audio.get',
-                    array(
-                        'owner_id' => '-29836620'
-
-                    )
-                );
-
-
-                foreach ($resp->audio as $track) :?>
-
-
-                <?php  if (empty($_POST['artist']) &&  empty($_POST['genre'])){
-                  ?>
-
-                <script type="text/javascript">
-                    playerGroup.addPlayer({
-                        url: '<?php echo $track->url; ?>',
-                        title: '<?php echo '<span class="artist">'.addslashes($track->artist).'</span> - '.addslashes($track->title) ?>',
-                        getId3Title: false,
-                        cssClass: 'player1',
-                        stopButton: true,
-                        volume: 0.5,
-                        box: 'playerHolder'
-                    });
-                </script>
-
-                <?php }
-
-                elseif (empty($_POST['genre'])) {
-
-                        if   (mb_strpos(strtolower($track->artist),strtolower( $_POST['artist'])) === false ){
-
-                continue;}
-                else {
-                 ?>
-
-                <script type="text/javascript">
-                    playerGroup.addPlayer({
-                        url: '<?php echo $track->url; ?>',
-                        title: '<?php echo '<span class="artist">'.addslashes($track->artist).'</span> - '.addslashes($track->title)?>',
-                        getId3Title: false,
-                        cssClass: 'player1',
-                        stopButton: true,
-                        volume: 0.5,
-                        box: 'playerHolder'
-                    });
-                </script>
-
-                    <?php    }   };
-
-                    if (!empty($_POST['genre']) && !empty($_POST['artist'])) {
-
-                        if (mb_strpos(strtolower($track->artist),strtolower( $_POST['artist'])) === false  ){
-
-                            continue;}
-
-                    elseif ((int)$_POST['genre'] == (int)$track->genre) {
-                       ?>
-
-                    <script type="text/javascript">
-                        playerGroup.addPlayer({
-                            url: '<?php echo $track->url; ?>',
-                            title: '<?php echo '<span class="artist">'.addslashes($track->artist).'</span> - '.addslashes($track->title) ?>',
-                            getId3Title: false,
-                            cssClass: 'player1',
-                            stopButton: true,
-                            volume: 0.5,
-                            box: 'playerHolder'
-                        });
-                    </script>
-
+                        <div class="controls">
+                            <div class="playPause play"></div>
+                        </div>
+                        <div class="time-line">
+                            <div class="bufferBar"></div>
+                        </div>
+                        <div class="time">
+                            <span class="current-time">00:00</span> /
+                           <span class="duration">
+                                <?php echo sprintf('%02d:%02d', ($track->duration / 60), $track->duration % 60); ?>
+                           </span>
+                        </div>
+                        <div class="volume-control">
+                        </div>
+                    </div>
                 <?php
-
-                }
-                }
-
-                if (empty($_POST['artist']) && !empty($_POST['genre'])) {
-
-                if   ((int)$_POST['genre'] != $track->genre ){
-
-                    continue;}
-                else {
-
-                ?>
-
-                    <script type="text/javascript">
-                        playerGroup.addPlayer({
-                            url: '<?php echo $track->url; ?>',
-                            title: '<?php  echo '<span class="artist">'.addslashes($track->artist).'</span> - '.addslashes($track->title) ?>',
-                            getId3Title: false,
-                            cssClass: 'player1',
-                            stopButton: true,
-                            volume: 0.5,
-                            box: 'playerHolder'
-                        });
-                    </script>
-
-                <?php    }   }
-
                 endforeach;
                 ?>
-
             </li>
-
         </ul>
+    </div>
 
+    <div class="pagination">
+        <?php
+        echo $this->pagination->getPagesLinks();
+        ?>
+    </div>
 
-
-            </div>
     <?php if ($canEdit && $this->item->checked_out == 0): ?>
         <a href="<?php echo JRoute::_('index.php?option=com_soundche_circle&task=circlesoundche.edit&id=' . $this->item->id); ?>"><?php echo JText::_("COM_SOUNDCHE_CIRCLE_EDIT_ITEM"); ?></a>
     <?php endif; ?>

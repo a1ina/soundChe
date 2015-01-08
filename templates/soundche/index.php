@@ -49,25 +49,25 @@ $doc->addStyleSheet($this->baseurl.'/templates/'.$this->template.'/styles/jquery
 
     </style>
     <script type="text/javascript">//<![CDATA[
-        hs.graphicsDir = '/components/com_phocagallery/assets/js/highslide/graphics/';//]]>
-  //<![CDATA[
-        var phocaZoom = {
-            objectLoadTime : 'after', wrapperClassName: '', outlineWhileAnimating : true, enableKeyListener : false, minWidth : 500, minHeight : 560, dimmingOpacity: 0.8,  fadeInOut : true, contentId: 'detail', objectType: 'iframe', objectWidth: 500, objectHeight: 560 };hs.registerOverlay({
-            html: '<div class=\u0022closebutton\u0022 onclick=\u0022return hs.close(this)\u0022 title=\u0022Close Window\u0022></div>',
-            position: 'top right',
-            fade: 2
-        }); if (hs.addSlideshow) hs.addSlideshow({
-            slideshowGroup: 'groupC0',
-            interval: 5000,
-            repeat: false,
-            useControls: true,
-            fixedControls: true,
-            overlayOptions: {
-                opacity: 1,
-                position: 'top center',
-                hideOnMouseOut: true
-            }
-        });
+//        hs.graphicsDir = '/components/com_phocagallery/assets/js/highslide/graphics/';//]]>
+//  //<![CDATA[
+//        var phocaZoom = {
+//            objectLoadTime : 'after', wrapperClassName: '', outlineWhileAnimating : true, enableKeyListener : false, minWidth : 500, minHeight : 560, dimmingOpacity: 0.8,  fadeInOut : true, contentId: 'detail', objectType: 'iframe', objectWidth: 500, objectHeight: 560 };hs.registerOverlay({
+//            html: '<div class=\u0022closebutton\u0022 onclick=\u0022return hs.close(this)\u0022 title=\u0022Close Window\u0022></div>',
+//            position: 'top right',
+//            fade: 2
+//        }); if (hs.addSlideshow) hs.addSlideshow({
+//            slideshowGroup: 'groupC0',
+//            interval: 5000,
+//            repeat: false,
+//            useControls: true,
+//            fixedControls: true,
+//            overlayOptions: {
+//                opacity: 1,
+//                position: 'top center',
+//                hideOnMouseOut: true
+//            }
+//        });
         //]]>
     </script>
     <script type="text/javascript">

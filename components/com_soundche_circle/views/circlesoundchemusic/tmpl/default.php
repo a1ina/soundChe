@@ -51,7 +51,7 @@ if ($this->item) : ?>
 
 
                    <?php
-                   require_once 'vkapi.class.php';
+                   require_once 'init.php';
 
                    $api_id = '4069648'; // Insert here id of your application
                    $vk_id = '40704529'; // Insert here you vk id

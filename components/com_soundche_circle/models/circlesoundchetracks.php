@@ -12,6 +12,8 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.modelform');
 jimport('joomla.event.dispatcher');
+jimport('joomla.html.pagination');
+jimport('vkapi.init');
 
 /**
  * Soundche_circle model.
@@ -20,7 +22,17 @@ class Soundche_circleModelCirclesoundchetracks extends JModelForm
 {
     
     var $_item = null;
-    
+    var $_pagination = null;
+    var $_total = null;
+
+    function __construct()
+    {
+        parent::__construct();
+        // Set the pagination request variables
+        $this->setState('limit', JRequest::getVar('limit', 15, '', 'int'));
+        $this->setState('limitstart', JRequest::getVar('limitstart', 0, '', 'int'));
+    }
+
 	/**
 	 * Method to auto-populate the model state.
 	 *
@@ -63,37 +75,33 @@ class Soundche_circleModelCirclesoundchetracks extends JModelForm
 	{
 		if ($this->_item === null)
 		{
-			$this->_item = false;
+            $VK = new vkapi();
 
-			if (empty($id)) {
-				$id = $this->getState('circlesoundche.id');
-			}
+            $resp = $VK->api('audio.get',
+                array(
+                    'owner_id' => '-29836620',
+                    'count'    => $this->getState('limit'),
+                    'offset'   => $this->getState('limitstart'),
+                )
+            );
 
-			// Get a level row instance.
-			$table = $this->getTable();
-
-			// Attempt to load the row.
-			if ($table->load($id))
-			{
-				// Check published state.
-				if ($published = $this->getState('filter.published'))
-				{
-					if ($table->state != $published) {
-						return $this->_item;
-					}
-				}
-
-				// Convert the JTable to a clean JObject.
-				$properties = $table->getProperties(1);
-				$this->_item = JArrayHelper::toObject($properties, 'JObject');
-			} elseif ($error = $table->getError()) {
-				$this->setError($error);
-			}
+            $audio = $resp->audio;
+            $this->_total = $resp->count;
+            $this->_item = $audio;
 		}
 
 		return $this->_item;
 	}
-    
+
+    public function getTotal(){
+        return $this->_total;
+    }
+
+    public function getPagination(){
+        $this->_pagination = new JPagination($this->getTotal(), $this->getState('limitstart'),  $this->getState('limit'));
+        return $this->_pagination;
+    }
+
 	public function getTable($type = 'Circlesoundche', $prefix = 'Soundche_circleTable', $config = array())
 	{   
         $this->addTablePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
@@ -101,67 +109,7 @@ class Soundche_circleModelCirclesoundchetracks extends JModelForm
 	}     
 
     
-	/**
-	 * Method to check in an item.
-	 *
-	 * @param	integer		The id of the row to check out.
-	 * @return	boolean		True on success, false on failure.
-	 * @since	1.6
-	 */
-	public function checkin($id = null)
-	{
-		// Get the id.
-		$id = (!empty($id)) ? $id : (int)$this->getState('circlesoundche.id');
 
-		if ($id) {
-            
-			// Initialise the table
-			$table = $this->getTable();
-
-			// Attempt to check the row in.
-            if (method_exists($table, 'checkin')) {
-                if (!$table->checkin($id)) {
-                    $this->setError($table->getError());
-                    return false;
-                }
-            }
-		}
-
-		return true;
-	}
-
-	/**
-	 * Method to check out an item for editing.
-	 *
-	 * @param	integer		The id of the row to check out.
-	 * @return	boolean		True on success, false on failure.
-	 * @since	1.6
-	 */
-	public function checkout($id = null)
-	{
-		// Get the user id.
-		$id = (!empty($id)) ? $id : (int)$this->getState('circlesoundche.id');
-
-		if ($id) {
-            
-			// Initialise the table
-			$table = $this->getTable();
-
-			// Get the current user object.
-			$user = JFactory::getUser();
-
-			// Attempt to check the row out.
-            if (method_exists($table, 'checkout')) {
-                if (!$table->checkout($user->get('id'), $id)) {
-                    $this->setError($table->getError());
-                    return false;
-                }
-            }
-		}
-
-		return true;
-	}    
-    
 	/**
 	 * Method to get the profile form.
 	 *
@@ -196,73 +144,6 @@ class Soundche_circleModelCirclesoundchetracks extends JModelForm
         return $data;
 	}
 
-	/**
-	 * Method to save the form data.
-	 *
-	 * @param	array		The form data.
-	 * @return	mixed		The user id on success, false on failure.
-	 * @since	1.6
-	 */
-	public function save($data)
-	{
-		$id = (!empty($data['id'])) ? $data['id'] : (int)$this->getState('circlesoundche.id');
-        $state = (!empty($data['state'])) ? 1 : 0;
-        $user = JFactory::getUser();
 
-        if($id) {
-            //Check the user can edit this item
-            $authorised = $user->authorise('core.edit', 'com_soundche_circle.circlesoundche.'.$id) || $authorised = $user->authorise('core.edit.own', 'com_soundche_circle.circlesoundche.'.$id);
-            if($user->authorise('core.edit.state', 'com_soundche_circle.circlesoundche.'.$id) !== true && $state == 1){ //The user cannot edit the state of the item.
-                $data['state'] = 0;
-            }
-        } else {
-            //Check the user can create new items in this section
-            $authorised = $user->authorise('core.create', 'com_soundche_circle');
-            if($user->authorise('core.edit.state', 'com_soundche_circle.circlesoundche.'.$id) !== true && $state == 1){ //The user cannot edit the state of the item.
-                $data['state'] = 0;
-            }
-        }
-
-        if ($authorised !== true) {
-            JError::raiseError(403, JText::_('JERROR_ALERTNOAUTHOR'));
-            return false;
-        }
-        
-        $table = $this->getTable();
-        if ($table->save($data) === true) {
-            return $id;
-        } else {
-            return false;
-        }
-        
-	}
-    
-     function delete($data)
-    {
-        $id = (!empty($data['id'])) ? $data['id'] : (int)$this->getState('circlesoundche.id');
-        if(JFactory::getUser()->authorise('core.delete', 'com_soundche_circle.circlesoundche.'.$id) !== true){
-            JError::raiseError(403, JText::_('JERROR_ALERTNOAUTHOR'));
-            return false;
-        }
-        $table = $this->getTable();
-        if ($table->delete($data['id']) === true) {
-            return $id;
-        } else {
-            return false;
-        }
-        
-        return true;
-    }
-    
-    function getCategoryName($id){
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-        $query 
-            ->select('title')
-            ->from('#__categories')
-            ->where('id = ' . $id);
-        $db->setQuery($query);
-        return $db->loadObject();
-    }
     
 }

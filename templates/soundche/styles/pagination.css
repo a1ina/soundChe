@@ -53,7 +53,7 @@
 }
 
 .pagination li a:hover,
-.pagination li a:focus,
+.pagination li a:focus
  {
     color: #2a6496;
     background-color: #eeeeee;

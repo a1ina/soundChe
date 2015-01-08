@@ -21,6 +21,7 @@ class Soundche_circleViewCirclesoundchetracks extends JView {
     protected $item;
     protected $form;
     protected $params;
+    protected $pagination;
 
     /**
      * Display the view
@@ -32,6 +33,7 @@ class Soundche_circleViewCirclesoundchetracks extends JView {
         
         $this->state = $this->get('State');
         $this->item = $this->get('Data');
+        $this->pagination = $this->get('Pagination');
 
         $this->params = $app->getParams('com_soundche_circle');
    		
